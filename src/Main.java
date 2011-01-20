@@ -13,11 +13,38 @@
  *
  * @author 0v3rr!d3
  */
+
+
+import java.sql.*;
+
+
+
 public class Main extends javax.swing.JFrame {
 
     /** Creates new form Main */
     public Main() {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb", "root", "");
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery("SELECT * FROM testtb");
+
+            while (rs.next())
+            {
+                System.out.println("Name is:" + rs.getString("name"));
+            }
+            
+            
+        } catch (Exception ex) {
+            
+        }
+        
+        
+        
         initComponents();
+
+
     }
 
     /** This method is called from within the constructor to
